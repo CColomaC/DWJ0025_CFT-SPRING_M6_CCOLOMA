@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>CFT - Form. Carrera</title>
+	</head>
+	<body>
+		<h1>Form Carrera</h1>
+		
+		<form th:action="@{/carrera/procesar}" th:object="${carrera}" method="POST">
+			<input type="hidden" th:field="*{id}"/>
+			<p>
+			Nombre: <input type="text" th:field="*{nombre}" th:value="${#strings.trim(carrera.nombre)}" />
+			<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color:red;"/>
+			</p>
+				<p>
+			Descripción: <input type="text" th:field="*{descripcion}" th:value="${#strings.trim(carrera.descripcion)}"/>
+			<span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" style="color:red;"/>
+			</p>
+			<button type="submit">Guardar</button>
+		</form>
+	</body>
+</html>

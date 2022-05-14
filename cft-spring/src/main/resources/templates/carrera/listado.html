@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>CFT - Listado Carrera</title>
+	</head>
+	<body>
+		<h1>Listado Carrera</h1>
+		
+		<a th:href="@{/carrera/nuevo}">Nueva Carrera</a>
+		<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Descripción</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="carrera : ${carreras}">
+				<td th:text="${carrera.id}"></td>
+				<td th:text="${carrera.nombre}"></td>
+				<td th:text="${carrera.descripcion}"></td>
+				<td>
+					<a th:href="@{/carera/editar/{carreraId}(carreraId=${carrera.id})}">Editar</a>
+					<a th:href="@{/carrera/eliminar(id=${carrera.id})}">Eliminar</a>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+
+	</body>
+</html>
