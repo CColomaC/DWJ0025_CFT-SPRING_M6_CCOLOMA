@@ -45,10 +45,17 @@ import cl.christian.java.cft.repository.CarreraRepository;
 	return "alumno/form";
 	}
 	
-	@GetMapping("/eliminar")
+	@GetMapping("/eliminar/{alumnoId}")
 	public String eliminar(@RequestParam(name="id", required = true) int id) {
 		alumnoRepository.delete(id);
 		return "redirect:/alumno/listado";
+	}
+	
+	@GetMapping("/listado")
+	public String listar(Model modelo) {
+		List<Alumno> alumnos = alumnoRepository.findAll();
+		modelo.addAttribute("alumnos", alumnos);
+		return "alumno/listado";
 	}
 	
 	@PostMapping("/procesar")
@@ -63,13 +70,6 @@ import cl.christian.java.cft.repository.CarreraRepository;
 			alumnoRepository.edit(alumno);
 		}
 		return "redirect:/alumno/listado";
-	}
-	
-	@GetMapping("/listado")
-	public String listar(Model modelo) {
-		List<Alumno> alumnos = alumnoRepository.findAll();
-		modelo.addAttribute("alumnos", alumnos);
-		return "alumno/listado";
 	}
 
 }
